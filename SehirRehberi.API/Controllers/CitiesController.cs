@@ -50,6 +50,16 @@ namespace SehirRehberi.API.Controllers
             return Ok(cityToReturn);
         }
 
+        [HttpPost]
+        [Route("delete")]
+        public ActionResult Delete(int id)
+        {
+            var city = _appRepository.GetCityById(id);
+            _appRepository.Delete<City>(city);
+            bool isDeleted = _appRepository.SaveAll();
+            return Ok(isDeleted);
+        }
+
         [HttpGet]
         [Route("Photos")]
         public ActionResult GetPhotosByCity(int cityId)
