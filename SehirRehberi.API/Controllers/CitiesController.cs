@@ -68,5 +68,14 @@ namespace SehirRehberi.API.Controllers
             return Ok(photos);
         }
 
+        [HttpPost]
+        [Route("update")]
+        public ActionResult Update([FromBody]City city)
+        {
+            _appRepository.Update(city);
+            _appRepository.SaveAll();
+            return Ok(city);
+
+        }
     }
 }

@@ -25,7 +25,10 @@ namespace SehirRehberi.API.Data
         {
             _context.Remove(entity);
         }
-
+        public void Update<T>(T entity) where T : class
+        {
+            _context.Set<T>().Update(entity);
+        }
         public List<City> GetCities()
         {
             var cities = _context.Cities.Include(c=>c.Photos).ToList();
