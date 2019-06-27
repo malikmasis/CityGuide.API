@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SehirRehberi.API.Dtos;
 using SehirRehberi.API.Models;
 
 namespace SehirRehberi.API.Data

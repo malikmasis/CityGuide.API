@@ -72,7 +72,7 @@ namespace SehirRehberi.API.Controllers
         [Route("update")]
         public ActionResult Update([FromBody]City city)
         {
-            _appRepository.Update(city);
+            _appRepository.Update<City>(city);
             _appRepository.SaveAll();
             return Ok(city);
 

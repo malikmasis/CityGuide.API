@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
 namespace SehirRehberi.API.Dtos
 {
-    public class PhotoForCreationDto
+    public class PhotoForCreationDto : BaseDto
     {
         public PhotoForCreationDto()
         {

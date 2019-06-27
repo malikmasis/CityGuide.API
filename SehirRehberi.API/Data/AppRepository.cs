@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SehirRehberi.API.Dtos;
 using SehirRehberi.API.Models;
 
 namespace SehirRehberi.API.Data
@@ -27,7 +28,8 @@ namespace SehirRehberi.API.Data
         }
         public void Update<T>(T entity) where T : class
         {
-            _context.Set<T>().Update(entity);
+            _context.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
         }
         public List<City> GetCities()
         {
