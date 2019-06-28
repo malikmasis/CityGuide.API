@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.EntityFrameworkCore;
 using SehirRehberi.API.Dtos;
 using SehirRehberi.API.Models;
@@ -58,6 +59,16 @@ namespace SehirRehberi.API.Data
         public bool SaveAll()
         {
             return _context.SaveChanges() > 0;
+        }
+
+        public async Task<T> GetByIdAsync<T>(int id) where T : class
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+
+        public T GetById<T>(int id) where T : class
+        {
+            return _context.Set<T>().Find(id);
         }
     }
 }

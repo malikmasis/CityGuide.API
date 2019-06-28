@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SehirRehberi.API.Dtos;
 using SehirRehberi.API.Models;
 
 namespace SehirRehberi.API.Data
@@ -12,6 +9,8 @@ namespace SehirRehberi.API.Data
         void Add<T>(T entity) where T:class ;
         void Delete<T>(T entity) where T : class;
         void Update<T>(T entity) where T : class;
+        Task<T> GetByIdAsync<T>(int id) where T : class;
+        T GetById<T>(int id) where T : class;
         bool SaveAll();
 
         List<City> GetCities();
