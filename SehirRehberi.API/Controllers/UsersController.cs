@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SehirRehberi.API.Data;
 using SehirRehberi.API.Dtos;
@@ -27,9 +22,9 @@ namespace SehirRehberi.API.Controllers
         [Route("detail")]
         public ActionResult GetUserById(int id)
         {
-            var user = _appRepository.GetByIdAsync<User>(id);
+            User user = _appRepository.GetById<User>(id);
             var userToReturn = _mapper.Map<UserForRegisterDto>(user);
-            return Ok(userToReturn);
+            return Ok(user);
         }
 
         [HttpPost]
