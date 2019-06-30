@@ -10,8 +10,8 @@ namespace SehirRehberi.API.Controllers
     [Route("api/Users")]
     public class UsersController : Controller
     {
-        private IAppRepository _appRepository;
-        private IMapper _mapper;
+        private readonly IAppRepository _appRepository;
+        private readonly IMapper _mapper;
 
         public UsersController(IAppRepository appRepository, IMapper mapper)
         {
@@ -23,7 +23,6 @@ namespace SehirRehberi.API.Controllers
         public ActionResult GetUserById(int id)
         {
             User user = _appRepository.GetById<User>(id);
-            var userToReturn = _mapper.Map<UserForRegisterDto>(user);
             return Ok(user);
         }
 
@@ -39,12 +38,19 @@ namespace SehirRehberi.API.Controllers
 
         [HttpPost]
         [Route("update")]
-        public ActionResult Update([FromBody]UserForRegisterDto user)
+        public ActionResult Update([FromBody]UserForUpdateDto user)
         {
             var mapToUser = _mapper.Map<User>(user);
+
+            Helpers.PasswordHash.CreatePasswordHash(user.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            mapToUser.PasswordHash = passwordHash;
+            mapToUser.PasswordSalt = passwordSalt;
+
             _appRepository.Update(mapToUser);
-            _appRepository.SaveAll();
-            return Ok(user);
+
+            bool isUpated = _appRepository.SaveAll();
+            return Ok(isUpated);
 
         }
     }

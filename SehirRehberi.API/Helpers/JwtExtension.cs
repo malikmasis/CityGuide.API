@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace SehirRehberi.API.Helpers
 {
@@ -13,7 +9,6 @@ namespace SehirRehberi.API.Helpers
             response.Headers.Add("Application-Error",message);
             response.Headers.Add("Access-Control-Allow-Origin","*");
             response.Headers.Add("Access-Control-Expose-Header","Application-Error");
-
         }
     }
 }

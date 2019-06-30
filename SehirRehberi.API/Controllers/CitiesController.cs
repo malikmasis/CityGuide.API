@@ -15,8 +15,8 @@ namespace SehirRehberi.API.Controllers
     [Route("api/Cities")]
     public class CitiesController : Controller
     {
-        private IAppRepository _appRepository;
-        private IMapper _mapper;
+        private readonly IAppRepository _appRepository;
+        private readonly IMapper _mapper;
 
         public CitiesController(IAppRepository appRepository, IMapper mapper)
         {

@@ -19,8 +19,8 @@ namespace SehirRehberi.API.Controllers
     [Route("api/Auth")]
     public class AuthController : Controller
     {
-        private IAuthRepository _authRepository;
-        private IConfiguration _configuration;
+        private readonly IAuthRepository _authRepository;
+        private readonly IConfiguration _configuration;
 
         public AuthController(IAuthRepository authRepository, IConfiguration configuration)
         {
@@ -33,7 +33,7 @@ namespace SehirRehberi.API.Controllers
         {
             if (await _authRepository.UserExists(userForRegisterDto.UserName))
             {
-                ModelState.AddModelError("UserName","Username already exists");
+                ModelState.AddModelError("UserName", "Username already exists");
             }
 
             if (!ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace SehirRehberi.API.Controllers
         {
             var user = await _authRepository.Login(userForLoginDto.UserName, userForLoginDto.Password);
 
-            if (user==null)
+            if (user == null)
             {
                 return Unauthorized();
             }
