@@ -19,15 +19,14 @@ namespace SehirRehberi.API.Controllers
             _mapper = mapper;
         }
 
-        [Route("detail")]
+        [HttpGet("detail")]
         public ActionResult GetUserById(int id)
         {
             User user = _appRepository.GetById<User>(id);
             return Ok(user);
         }
 
-        [HttpPost]
-        [Route("delete")]
+        [HttpPost("delete")]
         public ActionResult Delete(int id)
         {
             var user = _appRepository.GetById<User>(id);
@@ -36,8 +35,7 @@ namespace SehirRehberi.API.Controllers
             return Ok(isDeleted);
         }
 
-        [HttpPost]
-        [Route("update")]
+        [HttpPost("update")]
         public ActionResult Update([FromBody]UserForUpdateDto user)
         {
             var mapToUser = _mapper.Map<User>(user);

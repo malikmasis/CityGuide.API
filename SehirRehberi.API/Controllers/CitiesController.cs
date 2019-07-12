@@ -31,8 +31,7 @@ namespace SehirRehberi.API.Controllers
             return Ok(citiesToReturn);
         }
 
-        [HttpPost]
-        [Route("add")]
+        [HttpPost("add")]
         public ActionResult Add([FromBody]City city)
         {
             _appRepository.Add(city);
@@ -41,8 +40,7 @@ namespace SehirRehberi.API.Controllers
 
         }
 
-        [HttpGet]
-        [Route("detail")]
+        [HttpGet("detail")]
         public ActionResult GetCityById(int id)
         {
             var city = _appRepository.GetCityById(id);
@@ -50,8 +48,7 @@ namespace SehirRehberi.API.Controllers
             return Ok(cityToReturn);
         }
 
-        [HttpPost]
-        [Route("delete")]
+        [HttpPost("delete")]
         public ActionResult Delete(int id)
         {
             var city = _appRepository.GetCityById(id);
@@ -60,16 +57,14 @@ namespace SehirRehberi.API.Controllers
             return Ok(isDeleted);
         }
 
-        [HttpGet]
-        [Route("Photos")]
+        [HttpGet("Photos")]
         public ActionResult GetPhotosByCity(int cityId)
         {
             var photos = _appRepository.GetPhotosByCity(cityId);
             return Ok(photos);
         }
 
-        [HttpPost]
-        [Route("update")]
+        [HttpPost("update")]
         public ActionResult Update([FromBody]City city)
         {
             _appRepository.Update<City>(city);

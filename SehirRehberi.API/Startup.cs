@@ -55,6 +55,8 @@ namespace SehirRehberi.API
                     ValidateAudience = false
                 };
             });
+
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +69,10 @@ namespace SehirRehberi.API
 
             app.UseCors(x=>x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.UseAuthentication();
+
+            app.UseSwagger();
+            app.UseSwaggerUi3();
+
             app.UseMvc();
         }
     }

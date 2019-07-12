@@ -36,7 +36,7 @@ namespace SehirRehberi.API.Controllers
             _cloudinary = new Cloudinary(account);
         }
 
-        [HttpPost]
+        [HttpPost("AddPhotoForCity")]
         public ActionResult AddPhotoForCity(int cityId, [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             var city = _appRepository.GetCityById(cityId);
