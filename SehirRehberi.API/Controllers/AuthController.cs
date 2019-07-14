@@ -80,7 +80,5 @@ namespace SehirRehberi.API.Controllers
 
             return Ok(tokenString);
         }
-
-
     }
 }

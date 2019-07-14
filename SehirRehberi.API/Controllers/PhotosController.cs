@@ -12,20 +12,20 @@ using SehirRehberi.API.Models;
 
 namespace SehirRehberi.API.Controllers
 {
-    [Produces("application/json")]
     [Route("api/cities/{cityId}/photos")]
-    public class PhotosController : Controller
+    public class PhotosController : BaseController
     {
-        private readonly IAppRepository _appRepository;
-        private readonly IMapper _mapper;
+        //private readonly IAppRepository _appRepository;
+        //private readonly IMapper _mapper;
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
 
         private Cloudinary _cloudinary;
 
         public PhotosController(IAppRepository appRepository, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig)
+            : base(appRepository, mapper)
         {
-            _appRepository = appRepository;
-            _mapper = mapper;
+            //_appRepository = appRepository;
+            //_mapper = mapper;
             _cloudinaryConfig = cloudinaryConfig;
 
             Account account = new Account(
@@ -97,7 +97,6 @@ namespace SehirRehberi.API.Controllers
         {
             var photoFromDb = _appRepository.GetPhoto(id);
             var photo = _mapper.Map<PhotoForReturnDto>(photoFromDb);
-
             return Ok(photo);
         }
     }

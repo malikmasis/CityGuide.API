@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.EntityFrameworkCore;
-using SehirRehberi.API.Dtos;
 using SehirRehberi.API.Models;
 
 namespace SehirRehberi.API.Data
@@ -37,35 +34,29 @@ namespace SehirRehberi.API.Data
             var cities = _context.Cities.Include(c=>c.Photos).ToList();
             return cities;
         }
-
         public City GetCityById(int cityId)
         {
             var city = _context.Cities.Include(c => c.Photos).FirstOrDefault(c => c.Id == cityId);
             return city;
         }
-
         public Photo GetPhoto(int id) 
         {
             var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
             return photo;
         }
-
         public List<Photo> GetPhotosByCity(int cityId)
         {
             var photos = _context.Photos.Where(p => p.CityId == cityId).ToList();
             return photos;
         }
-
         public bool SaveAll()
         {
             return _context.SaveChanges() > 0;
         }
-
         public async Task<T> GetByIdAsync<T>(int id) where T : class
         {
             return await _context.Set<T>().FindAsync(id);
         }
-
         public T GetById<T>(int id) where T : class
         {
             return _context.Set<T>().Find(id);

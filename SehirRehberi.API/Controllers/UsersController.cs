@@ -6,17 +6,12 @@ using SehirRehberi.API.Models;
 
 namespace SehirRehberi.API.Controllers
 {
-    [Produces("application/json")]
     [Route("api/Users")]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
-        private readonly IAppRepository _appRepository;
-        private readonly IMapper _mapper;
-
         public UsersController(IAppRepository appRepository, IMapper mapper)
+            : base(appRepository, mapper)
         {
-            _appRepository = appRepository;
-            _mapper = mapper;
         }
 
         [HttpGet("detail")]
@@ -49,7 +44,6 @@ namespace SehirRehberi.API.Controllers
 
             bool isUpated = _appRepository.SaveAll();
             return Ok(isUpated);
-
         }
     }
 }

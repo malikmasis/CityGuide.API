@@ -26,8 +26,6 @@ namespace SehirRehberi.API.Data
             await _context.SaveChangesAsync();
 
             return user;
-
-
         }
         public async Task<User> Login(string userName, string password)
         {
